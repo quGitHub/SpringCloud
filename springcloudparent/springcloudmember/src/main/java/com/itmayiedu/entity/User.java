@@ -6,6 +6,10 @@ public class User {
 
     private  String  age;
 
+    public User(String name, String age) {
+        this.name = name;
+        this.age = age;
+    }
 
     public String getName() {
         return name;
@@ -21,5 +25,14 @@ public class User {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age='" + age + '\'' +
+                '}';
     }
 }
