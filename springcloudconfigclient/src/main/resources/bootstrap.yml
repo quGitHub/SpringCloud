@@ -1,0 +1,26 @@
+spring:
+  application:
+    ####注册中心应用名称  test-configclient  一定要和git服务器地址上面名字向对应
+    name:  test-configclient
+  cloud:
+    config:
+      ####读取后缀
+      profile: dev
+      ####读取config-server注册地址
+      discovery:
+        service-id: config-server
+        enabled: true
+#####    eureka服务注册地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8010/eureka
+server:
+  port: 8006
+ #######开启所有端点#########
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+

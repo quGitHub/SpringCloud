@@ -1,0 +1,31 @@
+###服务注册地址
+eureka:
+  client:
+    registerWithEureka: true #是否将自己注册到Eureka服务中，默认为true
+    fetchRegistry: true #是否从Eureka中获取注册信息，默认为true
+    serviceUrl:
+      defaultZone: http://localhost:8010/eureka/
+  instance:
+    ###注册到eurekaip地址
+    hostname: localhost
+###api网关端口号
+server:
+  port: 8009
+###网关名称
+spring:
+  application:
+    name: eureka-gateway
+
+
+zuul:
+  routes:
+    ###定义服务转发规则
+    api-a:
+       ###当客户端发送请求 localhost:8300/api-member开头的都会转发到会员服务上面
+      path: /api-member/**
+          ###服务别名 zuul网关默认整合ribbon  会自动实现负载均衡轮侧效果
+      serviceId: app-itmayi-member-impl
+    api-b:
+       ###当客户端发送请求 localhost:8300/api-order 开头的都会转发到订单服务上面
+      path: /api-order/**
+      serviceId: app-itmayi-order-fegin

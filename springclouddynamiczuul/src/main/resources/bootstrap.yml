@@ -1,0 +1,40 @@
+spring:
+  application:
+    ####注册中心应用名称  test-configclient  一定要和git服务器地址上面名字向对应
+    name:  eureka-gateway-dynamic-zuul
+  cloud:
+    config:
+      ####读取后缀
+      profile: dev
+      ####读取config-server注册地址
+      discovery:
+        service-id: config-server
+        enabled: true
+#####    eureka服务注册地址
+eureka:
+  client:
+    registerWithEureka: true #是否将自己注册到Eureka服务中，默认为true
+    fetchRegistry: true #是否从Eureka中获取注册信息，默认为true
+    service-url:
+      defaultZone: http://localhost:8010/eureka
+  instance:
+      ###注册到eurekaip地址
+    hostname: localhost
+
+
+server:
+  port: 8012
+  #######开启所有端点#########
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+
+###Post请求手动刷新   如果是使用的是动态路由，修改git上面配置文件，修改调用zuul上面
+#http://localhost:8012/actuator/refresh ，刷新之后，在用http://localhost:8012/****  去访问该路径  启动刷新器 从cofnig server读取
+
+
+
