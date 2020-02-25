@@ -19,13 +19,22 @@ public class OrderServiceImpl implements IOrderService {
     private MemberFeignService memberFeignService;
 
 
-    @ApiOperation("通过订单获取用户姓名")
-    @GetMapping("orderToMember")
+    /*@ApiOperation("通过订单获取用户姓名")
+    @GetMapping("/orderToMember")
     @ResponseBody
     @ApiImplicitParams({@ApiImplicitParam(name="name",value = "用户姓名",required =true ,dataType ="String"),
             @ApiImplicitParam(name="age",value = "用户年龄",required =true ,dataType ="String") } )
     public String orderToMember(String  name,String age) {
        User user = new User(name,age);
        return user.getName();
+    }*/
+    @ApiOperation("通过订单获取用户姓名")
+    @GetMapping("/orderToMember")
+    @ResponseBody
+    @ApiImplicitParams({@ApiImplicitParam(name="name",value = "用户姓名",required =true ,dataType ="String"),
+            @ApiImplicitParam(name="age",value = "用户年龄",required =true ,dataType ="String") } )
+    public String orderToMember(String  name,String age) {
+        User member = memberFeignService.getMemberTo();
+        return member.getName();
     }
 }
